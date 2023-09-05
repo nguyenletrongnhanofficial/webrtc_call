@@ -57,7 +57,7 @@ class AppContent extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.transparent,
-      body: CallScreen(ip: '192.168.68.107'),
+      body: CallScreen(ip: 'https://2ee6-2a09-bac1-7ac0-10-00-247-10.ngrok.io'),
     );
   }
 

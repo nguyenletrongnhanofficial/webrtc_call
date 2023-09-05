@@ -48,18 +48,30 @@ class Signaling {
   DataChannelCallback? onDataChannel;
 
   Map<String, dynamic> _iceServers = {
+    "sdpSemantics": "plan-b",
     'iceServers': [
-      {'url': 'stun:stun.l.google.com:19302'},
-      /*
-       * turn server configuration example.
       {
-        'url': 'turn:123.45.67.89:3478',
-        'username': 'change_to_real_user',
-        'credential': 'change_to_real_secret'
-      },
-       */
+        'urls': [
+          'stun:stun1.l.google.com:19302',
+          'stun:stun2.l.google.com:19302'
+        ]
+      }
     ]
   };
+
+  // Map<String, dynamic> _iceServers = {
+  //   'iceServers': [
+  //     {'url': 'stun:stun1.l.google.com:19302'},
+  //     /*
+  //      * turn server configuration example.
+  //     {
+  //       'url': 'turn:123.45.67.89:3478',
+  //       'username': 'change_to_real_user',
+  //       'credential': 'change_to_real_secret'
+  //     },
+  //      */
+  //   ]
+  // };
 
   final Map<String, dynamic> _config = {
     'mandatory': {},
@@ -203,7 +215,7 @@ class Signaling {
   }
 
   void connect() async {
-    var url = 'http://$_host:$_port';
+    var url = 'https://2ee6-2a09-bac1-7ac0-10-00-247-10.ngrok.io';
     _socket = SimpleWebSocket(url);
 
     print('connect to $url');
