@@ -29,7 +29,7 @@ import 'package:meta/meta.dart';
 class Env {
   Env._({required this.apiBaseUrl});
 
-  late final String apiBaseUrl;
+  final String apiBaseUrl;
 
   factory Env.dev() {
     return Env._(apiBaseUrl: "https://api.github.com");
@@ -49,5 +49,5 @@ class Config {
     return instance;
   }
 
-  late Env env;
+  Env? env;
 }

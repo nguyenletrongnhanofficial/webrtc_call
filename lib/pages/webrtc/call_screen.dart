@@ -32,12 +32,12 @@ class CallBody extends StatefulWidget {
 }
 
 class _CallBodyState extends State<CallBody> {
-  late Signaling _signaling;
+  Signaling? _signaling;
   var _selfId;
   RTCVideoRenderer _localRenderer = RTCVideoRenderer();
   RTCVideoRenderer _remoteRenderer = RTCVideoRenderer();
   bool _inCalling = false;
-  late final String serverIP;
+  final String serverIP;
   final TextEditingController textEditingController = TextEditingController();
 
   _CallBodyState({Key? key, required this.serverIP});
@@ -57,7 +57,7 @@ class _CallBodyState extends State<CallBody> {
   @override
   deactivate() {
     super.deactivate();
-    if (_signaling != null) _signaling.close();
+    if (_signaling != null) _signaling!.close();
     _localRenderer.dispose();
     _remoteRenderer.dispose();
   }
@@ -66,7 +66,7 @@ class _CallBodyState extends State<CallBody> {
     if (_signaling == null) {
       _signaling = Signaling(serverIP)..connect();
 
-      _signaling.onStateChange = (SignalingState state) {
+      _signaling!.onStateChange = (SignalingState state) {
         switch (state) {
           case SignalingState.CallStateNew:
             this.setState(() {
@@ -90,26 +90,26 @@ class _CallBodyState extends State<CallBody> {
         }
       };
 
-      _signaling.onEventUpdate = ((event) {
+      _signaling!.onEventUpdate = ((event) {
         final clientId = event['clientId'];
         context.read<CallProvider>().updateClientIp(clientId);
       });
 
-      _signaling.onPeersUpdate = ((event) {
+      _signaling!.onPeersUpdate = ((event) {
         this.setState(() {
           _selfId = event['self'];
         });
       });
 
-      _signaling.onLocalStream = ((stream) {
+      _signaling!.onLocalStream = ((stream) {
         _localRenderer.srcObject = stream;
       });
 
-      _signaling.onAddRemoteStream = ((stream) {
+      _signaling!.onAddRemoteStream = ((stream) {
         _remoteRenderer.srcObject = stream;
       });
 
-      _signaling.onRemoveRemoteStream = ((stream) {
+      _signaling!.onRemoveRemoteStream = ((stream) {
         _remoteRenderer.srcObject = null;
       });
     }
@@ -117,18 +117,18 @@ class _CallBodyState extends State<CallBody> {
 
   _invitePeer(context, peerId, useScreen) async {
     if (_signaling != null && peerId != _selfId) {
-      _signaling.invite(peerId, 'video', useScreen);
+      _signaling!.invite(peerId, 'video', useScreen);
     }
   }
 
   _hangUp() {
     if (_signaling != null) {
-      _signaling.bye();
+      _signaling!.bye();
     }
   }
 
   _switchCamera() {
-    _signaling.switchCamera();
+    _signaling!.switchCamera();
   }
 
   _muteMic() {}
