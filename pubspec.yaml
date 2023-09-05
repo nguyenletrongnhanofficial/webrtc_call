@@ -1,0 +1,53 @@
+name: webrtc_call
+description: A new Flutter project.
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=2.19.4 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+  flutter_webrtc: ^0.9.34
+  socket_io_client: ^2.0.3+1
+  provider: ^6.0.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/base/icons/
+    - assets/base/fonts/
+    - assets/app/icons/
+    - assets/app/fonts/
+
+  fonts:
+    - family: SFProText
+      fonts:
+        - asset: assets/base/fonts/SFProText-Light.ttf
+          weight: 300
+        - asset: assets/base/fonts/SFProText-Regular.ttf
+          weight: 400
+        - asset: assets/base/fonts/SFProText-Medium.ttf
+          weight: 500
+        - asset: assets/base/fonts/SFProText-Semibold.ttf
+          weight: 600
+        - asset: assets/base/fonts/SFProText-Bold.ttf
+          weight: 700
+    - family: AvenirNextLTPro-Regular
+      fonts:
+        - asset: assets/base/fonts/AvenirNextLTPro-Regular.otf
+    - family: AvenirNextLTPro-Demi
+      fonts:
+        - asset: assets/base/fonts/AvenirNextLTPro-Demi.otf
+    - family: AvenirNextLTPro-Bold
+      fonts:
+        - asset: assets/base/fonts/AvenirNextLTPro-Bold.otf
